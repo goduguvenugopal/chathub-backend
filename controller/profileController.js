@@ -1,9 +1,9 @@
 const User = require("../model/User");
 const Profile = require("../model/Profile");
 const jwt = require("jsonwebtoken");
-const dotEnv = require("dotenv")
+const dotEnv = require("dotenv");
 
-dotEnv.config()
+dotEnv.config();
 
 const secretKey = process.env.SECRETKEY1;
 // creating profile controller logic
@@ -34,13 +34,12 @@ const createProfile = async (req, res) => {
     });
 
     await saveProfile.save();
-     
-    const profi = await Profile.findOne({userName});
-    
-    const token = jwt.sign({profileId : profi._id} , secretKey)
 
-    res.status(200).json({message : "profile created" , token});
+    const profi = await Profile.findOne({ userName });
 
+    const token = jwt.sign({ profileId: profi._id }, secretKey);
+
+    res.status(200).json({ message: "profile created", token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "internal server Error" });
@@ -79,4 +78,17 @@ const findProfileByName = async (req, res) => {
   }
 };
 
-module.exports = { createProfile, findProfile, findProfileByName };
+// delete profile controller code
+
+const deleteProfile = async (req, res) => {
+  try {
+    const profileId = req.params.id;
+    await Profile.findByIdAndDelete(profileId);
+    res.status(200).json({ message: "profile has been deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "internal server Error" });
+  }
+};
+
+module.exports = { createProfile, findProfile, findProfileByName , deleteProfile };

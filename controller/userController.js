@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const User = require("../model/User");
 const jwt = require("jsonwebtoken");
 const dotEnv = require("dotenv");
- 
 
 dotEnv.config();
 
@@ -69,4 +68,17 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser , getUser};
+// delete user controller code
+
+const deleteUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    await User.findByIdAndDelete(userId);
+    res.status(200).json({ message: "user has been deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "internal server Error" });
+  }
+};
+
+module.exports = { createUser, loginUser, getUser, deleteUser };
