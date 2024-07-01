@@ -82,7 +82,8 @@ const deleteMessage = async (req, res) => {
 
 const deleteAllMessages = async (req, res) => {
   try {
-    await Message.deleteMany();
+    const { profileId } = req.body;
+    await Message.deleteMany({ profileId });
     res.status(200).json({ message: "All messages deleted successfully" });
   } catch (err) {
     console.log(err);
