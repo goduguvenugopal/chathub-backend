@@ -95,7 +95,7 @@ const deleteProfile = async (req, res) => {
 const updatePhoto = async (req, res) => {
   try {
     const { user, image } = req.body;
-    await Profile.findByIdAndUpdate(
+    await Profile.findOneAndUpdate(
       user,
       { $set: { image: image } },
       { new: true }
