@@ -96,7 +96,7 @@ const updatePhoto = async (req, res) => {
   try {
     const { user, image } = req.body;
     await Profile.findOneAndUpdate(
-      user,
+      { user: user },
       { $set: { image: image } },
       { new: true }
     );
