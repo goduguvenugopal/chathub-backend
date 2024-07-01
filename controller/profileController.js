@@ -91,4 +91,27 @@ const deleteProfile = async (req, res) => {
   }
 };
 
-module.exports = { createProfile, findProfile, findProfileByName , deleteProfile };
+// updating profile photo function
+const updatePhoto = async (req, res) => {
+  try {
+    const { user, image } = req.body;
+    await Profile.findByIdAndUpdate(
+      user,
+      { $set: { image: image } },
+      { new: true }
+    );
+
+    res.status(200).json({ message: "image updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "internal server Error" });
+  }
+};
+
+module.exports = {
+  createProfile,
+  findProfile,
+  findProfileByName,
+  deleteProfile,
+  updatePhoto,
+};
