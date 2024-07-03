@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 // middileware configuration
 app.use(express.json());
-app.use(cors({origin : "https://chathubb.netlify.app/"}));
+app.use(cors({origin : "https://chathubb.netlify.app"}));
 app.use(express.static("public"));
 
 
