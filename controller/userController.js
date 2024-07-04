@@ -16,19 +16,19 @@ const createUser = async (req, res) => {
     const exists = await User.findOne({ email });
     if (exists) {
       res.status(404).json({ message: "user already existed " });
+    } else if (!exists) {
+      // hashing user password with bcrypt
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const saveUser = new User({
+        email,
+        password: hashedPassword,
+      });
+
+      // saving the documet in database
+      await saveUser.save();
+      res.status(200).json({ message: "user created successfully" });
     }
-
-    // hashing user password with bcrypt
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const saveUser = new User({
-      email,
-      password: hashedPassword,
-    });
-
-    // saving the documet in database
-    await saveUser.save();
-    res.status(200).json({ message: "user created successfully" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "internal server error" });
