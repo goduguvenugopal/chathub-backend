@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
     // comparing hashed password with user input
     const hashedPassword = await bcrypt.compare(password, exists.password);
 
-    if (hashedPassword) {
+    if (!hashedPassword) {
       res.status(401).json({ message: "password not existed " });
     }
 
