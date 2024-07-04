@@ -43,14 +43,17 @@ const loginUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.compare(password, exists.password);
 
-    if (!exists || !hashedPassword) {
-      res.status(404).json({ message: "user not existed " });
+    // checking user existed or not 
+    if (exists.email !== email) {
+      res.status(404).json({ message: "email not existed " });
+    } else if (exists.password !== hashedPassword) {
+      res.status(401).json({ message: "password not existed " });
+    } else {
+      // json token generating
+      const token = jwt.sign({ userId: exists._id }, secretKey);
+
+      res.status(200).json(token);
     }
-
-    // json token generating
-    const token = jwt.sign({ userId: exists._id }, secretKey);
-
-    res.status(200).json(token);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "internal server error" });
