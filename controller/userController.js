@@ -14,7 +14,7 @@ const createUser = async (req, res) => {
 
     // checking already user exists with this email
     const exists = await User.findOne({ email });
-    if (exists && (await bcrypt.compare(password, exists.password))) {
+    if (exists) {
       res.status(404).json({ message: "user already existed " });
     }
 
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.compare(password, exists.password);
 
-    if (!email || !hashedPassword) {
+    if (!exists || !hashedPassword) {
       res.status(404).json({ message: "user not existed " });
     }
 
