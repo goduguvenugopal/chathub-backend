@@ -39,7 +39,7 @@ const createProfile = async (req, res) => {
 
     const token = jwt.sign({ profileId: profi._id }, secretKey);
 
-    res.status(200).json({ message: "profile created", toke : token });
+    res.status(200).json({ message: "profile created", token : token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "internal server Error" });
