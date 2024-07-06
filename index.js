@@ -9,11 +9,21 @@ const profileRoute = require("./route/profileRoute")
  
 dotEnv.config();
 
-const port = process.env.PORT || 5000;
+ 
 
 // middileware configuration
+
+ // Use CORS middleware to allow requests from specific origin
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
+
+// Preflight request handling
+app.options('*', cors({
+  origin: 'http://localhost:5173'
+}));
+
 app.use(express.json());
-app.use(cors({origin:"http://localhost:5173"}));
 app.use(express.static("public"));
 
 
@@ -32,6 +42,9 @@ mongoose
 app.use("/user" ,userRoute)
 app.use("/profile" , profileRoute)
 app.use("/message" , messageRoute)
+
+
+const port = process.env.PORT || 5000;
 
 // server listening function
 app.listen(port , ()=>{
