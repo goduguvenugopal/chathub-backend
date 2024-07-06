@@ -18,11 +18,7 @@ app.use(cors({
   origin: 'http://localhost:5173'
 }));
 
-// Preflight request handling
-app.options('*', cors({
-  origin: 'http://localhost:5173'
-}));
-
+ 
 app.use(express.json());
 app.use(express.static("public"));
 
