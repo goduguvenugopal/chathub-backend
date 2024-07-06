@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 // middileware configuration
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:"http://localhost:5173"}));
 app.use(express.static("public"));
 
 
