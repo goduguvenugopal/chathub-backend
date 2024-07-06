@@ -13,12 +13,8 @@ dotEnv.config();
 
 // middileware configuration
 
- // Use CORS middleware to allow requests from specific origin
-app.use(cors({
-  origin: 'http://localhost:5173'
-}));
-
- 
+ // Use CORS middleware to allow requests from all origins
+app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
