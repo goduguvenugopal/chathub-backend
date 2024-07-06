@@ -17,12 +17,12 @@ dotEnv.config();
     
 // Use CORS middleware to allow requests from specific origin
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: '*'
 }));
 
 // Preflight request handling
 app.options('*', cors({
-  origin: 'http://localhost:5173',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token']
 }));
