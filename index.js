@@ -12,7 +12,7 @@ dotEnv.config();
  
 
 // middileware configuration
-// Use CORS middleware to allow requests from specific origin
+// Use CORS middleware to allow requests 
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
