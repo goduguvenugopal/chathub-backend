@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middleware");
-const messageRoutes = require("../controller/messageController");
+const messageController = require("../controller/messageController");
 
 // routes defining
 
 router.post(
   "/send-message",
   verifyToken.profileToken,
-  messageRoutes.sendMessage
+  messageController.sendMessage
 );
-router.get("/get-all-messages", messageRoutes.getAllMessages);
-router.get("/get-individual-messages", messageRoutes.getIndividualMsg);
-router.delete("/delete-message/:id", messageRoutes.deleteMessage);
-router.delete("/delete-all-messages", messageRoutes.deleteAllMessages);
+router.get("/get-all-messages", messageController.getAllMessages);
+router.get("/get-individual-messages/:profileId", messageController.getIndividualMsg);
+router.delete("/delete-message/:id", messageController.deleteMessage);
+router.delete("/delete-all-messages", messageController.deleteAllMessages);
 
 module.exports = router;
