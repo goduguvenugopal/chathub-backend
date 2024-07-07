@@ -50,8 +50,8 @@ const createProfile = async (req, res) => {
 
 const findProfile = async (req, res) => {
   try {
-    const user = req.params.userId;
-    const profile = await Profile.findById(user);
+    const { user } = req.body;
+    const profile = await Profile.findOne({ user});
     if (!profile) {
       res.status(404).json({ message: "profile not found" });
     }
