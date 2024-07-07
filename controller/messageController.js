@@ -51,14 +51,14 @@ const getAllMessages = async (req, res) => {
 // get individual messages
 const getIndividualMsg = async (req, res) => {
   try {
-    const profileId = req.params.id;
+    const {profileId} = req.body;
     const getMessages = await Message.find({ profileId})
 
     if (!getMessages) {
       res.status(404).json({ message: "messages not found" });
     }
 
-    res.status(200).json({data : getMessages});
+    res.status(200).json(getMessages);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "internal server error" });

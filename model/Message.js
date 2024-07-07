@@ -21,8 +21,7 @@ const messageSchema = new mongoose.Schema({
   },
 
   profileId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Profile",
+    type: String,
   },
 });
 

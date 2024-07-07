@@ -11,7 +11,7 @@ router.post(
   messageRoutes.sendMessage
 );
 router.get("/get-all-messages", messageRoutes.getAllMessages);
-router.get("/get-individual-messages/:id", messageRoutes.getIndividualMsg);
+router.get("/get-individual-messages", messageRoutes.getIndividualMsg);
 router.delete("/delete-message/:id", messageRoutes.deleteMessage);
 router.delete("/delete-all-messages", messageRoutes.deleteAllMessages);
 
