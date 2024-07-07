@@ -60,7 +60,7 @@ const getIndividualMsg = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "messages fetched successfully", data : getMessages });
+      .json(getMessages);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "internal server error" });
