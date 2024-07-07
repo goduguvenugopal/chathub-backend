@@ -58,7 +58,7 @@ const getIndividualMsg = async (req, res) => {
       res.status(404).json({ message: "messages not found" });
     }
 
-    res.status(200).json(getMessages);
+    res.status(200).json({data : getMessages});
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "internal server error" });
