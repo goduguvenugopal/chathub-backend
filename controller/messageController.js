@@ -52,7 +52,7 @@ const getAllMessages = async (req, res) => {
 const getIndividualMsg = async (req, res) => {
   try {
     const { profileId } = req.body;
-    const getMessages = await Message.find({ profileId });
+    const getMessages = await Message.find({ profileId : profileId})
 
     if (!getMessages) {
       res.status(404).json({ message: "messages not found" });
