@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 // creating profile schema
 
 const profileSchema = new mongoose.Schema({
-
   profileName: {
     type: String,
     required: true,
@@ -20,10 +19,9 @@ const profileSchema = new mongoose.Schema({
     type: String,
   },
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
+    required  : true
   },
-
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

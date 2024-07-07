@@ -20,10 +20,12 @@ const messageSchema = new mongoose.Schema({
     type: String,
   },
 
-  profileId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Profile",
-  },
+  profileId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Profile",
+    },
+  ],
 });
 
 const Message = mongoose.model("Message", messageSchema);
