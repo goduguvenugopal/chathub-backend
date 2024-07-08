@@ -46,7 +46,7 @@ const createProfile = async (req, res) => {
   }
 };
 
-// finding profiles by id function
+// finding profiles byid with token function
 
 const findProfile = async (req, res) => {
   try {
@@ -61,6 +61,25 @@ const findProfile = async (req, res) => {
     res.status(500).json({ message: "internal server Error" });
   }
 };
+
+
+
+// finding profiles byid function
+
+const findProfileById = async (req, res) => {
+  try {
+    const profileId = req.params.id
+    const profile = await Profile.findById(profileId);
+    if (!profile) {
+      res.status(404).json({ message: "profile not found" });
+    }
+    res.status(200).json(profile);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "internal server Error" });
+  }
+};
+
 
 // finding profile by userName function
 
@@ -114,4 +133,5 @@ module.exports = {
   findProfileByName,
   deleteProfile,
   updatePhoto,
+  findProfileById
 };
