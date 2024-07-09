@@ -11,15 +11,15 @@ const chatSchema = new mongoose.Schema({
     required: true,
   },
   userName: {
-    type: string,
+    type: String,
     required: true,
   },
   userId: {
-    type: string,
+    type: String,
     required: true,
   },
   image: {
-    type: string,
+    type: String,
     required: true,
   },
 });
