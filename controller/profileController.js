@@ -83,12 +83,12 @@ const findProfileById = async (req, res) => {
 
 // finding profile by userName function
 
-const findProfileByName = async (req, res) => {
+const findAllProfiles = async (req, res) => {
   try {
-    const { userName } = req.body;
-    const getProfile = await Profile.findOne({ userName });
+   
+    const getProfile = await Profile.find();
     if (!getProfile) {
-      res.status(404).json({ message: "profile not found" });
+      res.status(404).json({ message: "profiles not found" });
     }
     res.status(200).json(getProfile);
   } catch (error) {
@@ -130,7 +130,7 @@ const updatePhoto = async (req, res) => {
 module.exports = {
   createProfile,
   findProfile,
-  findProfileByName,
+  findAllProfiles,
   deleteProfile,
   updatePhoto,
   findProfileById

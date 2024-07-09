@@ -7,7 +7,7 @@ const profileController = require("../controller/profileController");
 
 router.post("/create-profile",verifyToken.userToken,profileController.createProfile);
 router.get("/get-profile-byid" ,verifyToken.profileToken, profileController.findProfile)
-router.get("/get-profile-byname" , profileController.findProfileByName)
+router.get("/get-all-profiles" , profileController.findProfileByName)
 router.delete("/delete-profile/:id" , profileController.deleteProfile)
 router.put("/update-photo",profileController.updatePhoto)
 router.get("/get-profile/:id" , profileController.findProfileById)
