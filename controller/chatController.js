@@ -11,12 +11,12 @@ const sendChat = async (req, res) => {
     }
     // current time
     const currentDate = new Date().toLocaleString("en-GB");
-    
+
     const saveChat = new Chat({
       text,
       userName: userProfile.userName,
       userId: userProfile._id,
-      Date: currentDate,
+      date: currentDate,
       image: userProfile.image,
     });
 
