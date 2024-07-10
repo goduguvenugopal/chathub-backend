@@ -4,7 +4,7 @@ const Profile = require("../model/Profile");
 
 const sendChat = async (req, res) => {
   try {
-    const { text } = req.body;
+    const { text ,date } = req.body;
     const userProfile = await Profile.findById(req.profileId);
     if (!userProfile) {
       res.status(404).json({ Message: "profile not found" });
@@ -16,7 +16,7 @@ const sendChat = async (req, res) => {
       text,
       userName: userProfile.userName,
       userId: userProfile._id,
-      date: currentDate,
+      date,
       image: userProfile.image,
     });
 
