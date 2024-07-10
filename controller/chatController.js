@@ -10,7 +10,7 @@ const sendChat = async (req, res) => {
       res.status(404).json({ Message: "profile not found" });
     }
     // current time
-    const currentDate = new Date().toLocaleString();
+ 
 
     const saveChat = new Chat({
       text,
