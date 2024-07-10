@@ -10,7 +10,7 @@ const sendChat = async (req, res) => {
       res.status(404).json({ Message: "profile not found" });
     }
     // current time
-    const currentDate = new Date().toLocaleString()
+    const currentDate = new Date().toLocaleString();
 
     const saveChat = new Chat({
       text,
@@ -40,4 +40,17 @@ const getAllChats = async (req, res) => {
   }
 };
 
-module.exports = { sendChat , getAllChats};
+// delete single chat
+
+const deleteChat = async (req, res) => {
+  try {
+    const chatId = req.params.chatId;
+    await Chat.findByIdAndDelete(chatId);
+    res.status(200).json({ Message: "message deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ Message: "internal server error" });
+  }
+};
+
+module.exports = { sendChat, getAllChats , deleteChat};
