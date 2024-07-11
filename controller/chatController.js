@@ -53,7 +53,7 @@ const deleteChat = async (req, res) => {
 const deleteAllChats = async (req, res) => {
   try {
     const { userId } = req.body;
-    await Message.deleteMany({ userId});
+    await Chat.deleteMany({ userId});
     res.status(200).json({ message: "All chats deleted successfully" });
   } catch (err) {
     console.log(err);
