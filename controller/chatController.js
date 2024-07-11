@@ -4,20 +4,19 @@ const Profile = require("../model/Profile");
 
 const sendChat = async (req, res) => {
   try {
-    const { text ,date } = req.body;
+    const { text, date, userName, userId, image } = req.body;
     const userProfile = await Profile.findById(req.profileId);
     if (!userProfile) {
       res.status(404).json({ Message: "profile not found" });
     }
     // current time
- 
 
     const saveChat = new Chat({
       text,
-      userName: userProfile.userName,
-      userId: userProfile._id,
+      userName,
+      userId,
       date,
-      image: userProfile.image,
+      image,
     });
 
     await saveChat.save();
@@ -53,4 +52,4 @@ const deleteChat = async (req, res) => {
   }
 };
 
-module.exports = { sendChat, getAllChats , deleteChat};
+module.exports = { sendChat, getAllChats, deleteChat };

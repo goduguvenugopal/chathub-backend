@@ -46,22 +46,7 @@ const createProfile = async (req, res) => {
   }
 };
 
-// finding profiles byid with token function
-
-const findProfile = async (req, res) => {
-  try {
-    
-    const profile = await Profile.findById(req.profileId);
-    if (!profile) {
-      res.status(404).json({ message: "profile not found" });
-    }
-    res.status(200).json(profile);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "internal server Error" });
-  }
-};
-
+ 
 
 
 // finding profiles byid function

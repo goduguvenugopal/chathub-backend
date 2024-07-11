@@ -4,22 +4,22 @@ const Profile = require("../model/Profile");
 // creating message controller
 const sendMessage = async (req, res) => {
   try {
-    const { message, postImage } = req.body;
+    const { message, postImage, profileImage, userName, profileId } = req.body;
     // finding profile details
     const profile = await Profile.findById(req.profileId);
     if (!profile) {
       res.status(404).json({ Message: "profile not found" });
     }
-
+    // save the current date
     const currentDate = new Date().toLocaleDateString("en-GB");
 
     // saving in database message details
     const saveMessage = new Message({
       message,
       postImage,
-      profileImage: profile.image,
-      userName: profile.userName,
-      profileId: profile._id,
+      profileImage,
+      userName,
+      profileId,
       date: currentDate,
     });
 
@@ -48,23 +48,7 @@ const getAllMessages = async (req, res) => {
   }
 };
 
-// get individual messages
-const getIndividualMsg = async (req, res) => {
-  try {
-    const profileId = req.params.profileId;
-    const getMessages = await Message.find({profileId})
-
-    if (!getMessages) {
-      res.status(404).json({ message: "messages not found" });
-    }
-
-    res.status(200).json(getMessages);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "internal server error" });
-  }
-};
-
+ 
 // delete messages by id
 const deleteMessage = async (req, res) => {
   try {

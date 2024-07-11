@@ -8,6 +8,7 @@ const messageSchema = new mongoose.Schema({
   },
   postImage: {
     type: String,
+    required: true,
   },
   date: {
     type: String,
@@ -15,13 +16,16 @@ const messageSchema = new mongoose.Schema({
   },
   profileImage: {
     type: String,
+    required: true,
   },
   userName: {
     type: String,
+    required: true,
   },
 
   profileId: {
     type: String,
+    required: true,
   },
 });
 

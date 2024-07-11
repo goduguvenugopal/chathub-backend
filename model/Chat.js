@@ -8,20 +8,19 @@ const chatSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    required : true
-     
+    required: true,
   },
   userName: {
     type: String,
-    
+    required: true,
   },
   userId: {
     type: String,
-   
+    required: true,
   },
   image: {
     type: String,
-     
+    required: true,
   },
 });
 
