@@ -1,15 +1,11 @@
 const Message = require("../model/Message");
-const Profile = require("../model/Profile");
+ 
 
 // creating message controller
 const sendMessage = async (req, res) => {
   try {
     const { message, postImage, profileImage, userName, profileId } = req.body;
-    // finding profile details
-    const profile = await Profile.findById(req.profileId);
-    if (!profile) {
-      res.status(404).json({ Message: "profile not found" });
-    }
+  
     // save the current date
     const currentDate = new Date().toLocaleDateString("en-GB");
 

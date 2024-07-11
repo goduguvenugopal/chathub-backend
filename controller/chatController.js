@@ -1,16 +1,11 @@
 const Chat = require("../model/Chat");
-const Profile = require("../model/Profile");
+ 
 // send text controlloer
 
 const sendChat = async (req, res) => {
   try {
     const { text, date, userName, userId, image } = req.body;
-    const userProfile = await Profile.findById(req.profileId);
-    if (!userProfile) {
-      res.status(404).json({ Message: "profile not found" });
-    }
-    // current time
-
+  
     const saveChat = new Chat({
       text,
       userName,
