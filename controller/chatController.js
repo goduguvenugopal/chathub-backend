@@ -47,4 +47,18 @@ const deleteChat = async (req, res) => {
   }
 };
 
-module.exports = { sendChat, getAllChats, deleteChat };
+
+// deleteing all messages function
+
+const deleteAllChats = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    await Message.deleteMany({ userId});
+    res.status(200).json({ message: "All chats deleted successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "internal server error" });
+  }
+};
+
+module.exports = { sendChat, getAllChats, deleteChat , deleteAllChats};
