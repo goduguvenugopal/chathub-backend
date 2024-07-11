@@ -114,7 +114,6 @@ const updatePhoto = async (req, res) => {
 
 module.exports = {
   createProfile,
-  findProfile,
   findAllProfiles,
   deleteProfile,
   updatePhoto,

@@ -76,7 +76,6 @@ const deleteAllMessages = async (req, res) => {
 module.exports = {
   sendMessage,
   getAllMessages,
-  getIndividualMsg,
   deleteMessage,
   deleteAllMessages,
 };
