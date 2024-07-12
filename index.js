@@ -7,6 +7,7 @@ const userRoute = require("./route/userRoute");
 const profileRoute = require("./route/profileRoute");
 const messageRoute = require("./route/messageRoute");
 const chatRoute = require("./route/chatRoute");
+const groupRoute = require("./route/groupRoute");
 
 dotEnv.config();
 
@@ -31,6 +32,7 @@ app.use("/user", userRoute);
 app.use("/profile", profileRoute);
 app.use("/message", messageRoute);
 app.use("/chat", chatRoute);
+app.use("/group", groupRoute);
 
 const port = process.env.PORT || 5000;
 
