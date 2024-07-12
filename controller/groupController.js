@@ -2,21 +2,21 @@ const Group = require("../model/Group");
 
 // Create a new group
 const createGroup = async (req, res) => {
-  const {
-    admin,
-    groupName,
-    adminProfileId,
-    profileId1,
-    profileId2,
-    profileId3,
-    profileId4,
-    profileId5,
-    profileId6,
-    profileId7,
-    profileId8,
-  } = req.body;
-
   try {
+    const {
+      admin,
+      groupName,
+      adminProfileId,
+      profileId1,
+      profileId2,
+      profileId3,
+      profileId4,
+      profileId5,
+      profileId6,
+      profileId7,
+      profileId8,
+    } = req.body;
+
     const newGroup = new Group({
       admin,
       groupName,
@@ -32,7 +32,7 @@ const createGroup = async (req, res) => {
     });
 
     await newGroup.save();
-    res.status(201).json(savedGroup);
+    res.status(201).json({ message: "group created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -51,12 +51,12 @@ const getAllGroups = async (req, res) => {
 // Get a single group by ID
 const deleteGroupById = async (req, res) => {
   try {
-    const  id = req.params.id;
-     await Group.findByIdAndDelete(id);
+    const id = req.params.id;
+    await Group.findByIdAndDelete(id);
     res.status(200).json({ message: "deleted group" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-module.exports = {createGroup , getAllGroups, deleteGroupById}
+module.exports = { createGroup, getAllGroups, deleteGroupById };
