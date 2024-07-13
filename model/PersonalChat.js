@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const personalChat = new mongoose.Schema({
   text: {
     type: String,
-    required: true,
   },
   date: {
     type: String,
@@ -25,6 +24,9 @@ const personalChat = new mongoose.Schema({
   groupId: {
     type: String,
     required: true,
+  },
+  photo: {
+    type: String,
   },
 });
 

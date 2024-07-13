@@ -4,7 +4,7 @@ const PersonalChat = require("../model/PersonalChat");
 
 const sendChat = async (req, res) => {
   try {
-    const { text, date, userName, userId, image, groupId } = req.body;
+    const { text, date, userName, userId, image, groupId , photo } = req.body;
 
     const saveChat = new PersonalChat({
       text,
@@ -13,6 +13,7 @@ const sendChat = async (req, res) => {
       date,
       image,
       groupId,
+      photo
     });
 
     await saveChat.save();
