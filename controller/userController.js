@@ -56,7 +56,7 @@ const loginUser = async (req, res) => {
     // json token generating
     const token = jwt.sign({ userId: exists._id }, secretKey);
 
-    res.status(200).json({token : token});
+    res.status(200).json({ token: token });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "internal server error" });
@@ -74,6 +74,27 @@ const getUser = async (req, res) => {
   }
 };
 
+// update password
+const updatePassword = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await User.findOneAndUpdate(
+      { email: email },
+      { $set: { password: hashedPassword } },
+      { new: true }
+    );
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // delete user controller code
 
 const deleteUser = async (req, res) => {
@@ -87,4 +108,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser, getUser, deleteUser };
+module.exports = { createUser, loginUser, getUser, deleteUser , updatePassword};
