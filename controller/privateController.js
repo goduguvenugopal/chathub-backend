@@ -16,6 +16,20 @@ const setPrivate = async (req, res) => {
   }
 };
 
+
+// get all chats controlloer function
+
+const getAllAccounts = async (req, res) => {
+  try {
+    const allAccounts = await PrivateAccount.find();
+    res.status(200).json(allAccounts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ Message: "internal server error" });
+  }
+};
+
+
 // delete privateAccount controller code
 
 const deletePrivate = async (req, res) => {
@@ -31,4 +45,4 @@ const deletePrivate = async (req, res) => {
   }
 };
 
-module.exports = { setPrivate, deletePrivate };
+module.exports = { setPrivate,getAllAccounts, deletePrivate };
