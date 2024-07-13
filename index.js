@@ -9,6 +9,7 @@ const messageRoute = require("./route/messageRoute");
 const chatRoute = require("./route/chatRoute");
 const groupRoute = require("./route/groupRoute");
 const personalChatRoute = require("./route/personalRoute");
+const privateRoute = require("./route/privateRoute");
 
 dotEnv.config();
 
@@ -35,6 +36,7 @@ app.use("/message", messageRoute);
 app.use("/chat", chatRoute);
 app.use("/group", groupRoute);
 app.use("/personalchat", personalChatRoute);
+app.use("/privateaccount", privateRoute);
 
 const port = process.env.PORT || 5000;
 
