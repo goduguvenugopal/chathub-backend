@@ -10,11 +10,12 @@ const chatRoute = require("./route/chatRoute");
 const groupRoute = require("./route/groupRoute");
 const personalChatRoute = require("./route/personalRoute");
 const privateRoute = require("./route/privateRoute");
+const likeRoute = require("./route/likeRoute");
 
 dotEnv.config();
 
 // middileware configuration
-// Use CORS middleware to allow requests
+// Use CORS middleware to allow requests all
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -37,7 +38,9 @@ app.use("/chat", chatRoute);
 app.use("/group", groupRoute);
 app.use("/personalchat", personalChatRoute);
 app.use("/privateaccount", privateRoute);
+app.use("/like", likeRoute);
 
+// port number configuration with process.env
 const port = process.env.PORT || 5000;
 
 // server listening function
