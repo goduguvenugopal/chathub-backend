@@ -12,7 +12,7 @@ const createLike = async (req, res) => {
     });
 
     await saveLikes.save();
-    res.status(200).json({ message: "post liked user successfully" });
+    res.status(200).json({ message: "post liked user successfully" } , saveLikes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "internal server error" });
