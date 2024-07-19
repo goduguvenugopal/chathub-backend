@@ -13,6 +13,7 @@ const privateRoute = require("./route/privateRoute");
 const likeRoute = require("./route/likeRoute");
 const followerRoute = require("./route/followerRoute");
 const followingRoute = require("./route/followingRoute");
+const commentRoute = require("./route/commentRoute");
 
 dotEnv.config();
 
@@ -43,6 +44,7 @@ app.use("/privateaccount", privateRoute);
 app.use("/like", likeRoute);
 app.use("/follower", followerRoute);
 app.use("/following", followingRoute);
+app.use("/comment", commentRoute);
 
 // port number configuration with process.env
 const port = process.env.PORT || 5000;
