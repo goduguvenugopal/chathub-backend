@@ -28,7 +28,7 @@ const createProfile = async (req, res) => {
 
     await saveProfile.save();
 
-    res.status(200).json({ message: "profile created", token : token });
+    res.status(200).json({ message: "profile created" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "internal server Error" });
