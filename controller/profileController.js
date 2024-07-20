@@ -1,13 +1,6 @@
 const User = require("../model/User");
 const Profile = require("../model/Profile");
-const jwt = require("jsonwebtoken");
-const dotEnv = require("dotenv");
-
-dotEnv.config();
-
-const secretKey = process.env.SECRETKEY1;
-// creating profile controller logic
-
+ 
 const createProfile = async (req, res) => {
   try {
     const { profileName, userName, bio, image } = req.body;
@@ -34,10 +27,6 @@ const createProfile = async (req, res) => {
     });
 
     await saveProfile.save();
-
-    const profi = await Profile.findOne({ userName });
-
-    const token = jwt.sign({ profileId: profi._id }, secretKey);
 
     res.status(200).json({ message: "profile created", token : token });
   } catch (error) {
