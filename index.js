@@ -18,7 +18,7 @@ const commentRoute = require("./route/commentRoute");
 dotEnv.config();
 
 // middileware configuration
-// Use CORS middleware to allow requests all
+// Use CORS middleware to allow requests and response from specific orgin 
 app.use(cors({ origin: "https://chathubb.netlify.app" }));
 app.use(express.json());
 app.use(express.static("public"));
