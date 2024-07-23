@@ -19,7 +19,7 @@ dotEnv.config();
 
 // middileware configuration
 // Use CORS middleware to allow requests and response from specific orgin 
-app.use(cors({ origin: "https://chathubb.netlify.app" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.static("public"));
 
