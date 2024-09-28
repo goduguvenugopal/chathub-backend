@@ -18,8 +18,10 @@ const commentRoute = require("./route/commentRoute");
 dotEnv.config();
 
 // middileware configuration
-// Use CORS middleware to allow requests and response from specific two orgins 
-app.use(cors({ origin: "*" }));
+
+const allowedOrigins = ['https://chathubb.netlify.app', 'http://localhost:5173'];
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 app.use(express.static("public"));
 
