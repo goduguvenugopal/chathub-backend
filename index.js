@@ -19,9 +19,20 @@ dotEnv.config();
 
 // middileware configuration
 
-const allowedOrigins = ['https://chathubb.netlify.app', 'http://localhost:5173'];
+// cors congigurations
+const allowedOrigins = ["https://chathubb.netlify.app"];
 
-app.use(cors({ origin: allowedOrigins }));
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Access blocked by cors policy"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static("public"));
 
