@@ -20,19 +20,20 @@ dotEnv.config();
 // middileware configuration
 
 // cors congigurations
-const allowedOrigins = ["https://chathubb.netlify.app"];
+// const allowedOrigins = ["https://chathubb.netlify.app"];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Access blocked by cors policy"));
-    }
-  },
-};
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Access blocked by cors policy"));
+//     }
+//   },
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors())
 app.use(express.json());
 app.use(express.static("public"));
 
