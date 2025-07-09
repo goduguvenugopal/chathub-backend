@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-const dotEnv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoute = require("./route/userRoute");
@@ -14,8 +14,7 @@ const likeRoute = require("./route/likeRoute");
 const followerRoute = require("./route/followerRoute");
 const followingRoute = require("./route/followingRoute");
 const commentRoute = require("./route/commentRoute");
-
-dotEnv.config();
+const mongodbConnection = require("./connectDb");
 
 // middileware configuration
 
@@ -33,7 +32,7 @@ dotEnv.config();
 // };
 
 // app.use(cors(corsOptions));
-app.use(cors())
+app.use(cors("*"));
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -64,6 +63,11 @@ app.use("/comment", commentRoute);
 const port = process.env.PORT || 5000;
 
 // server listening function
-app.listen(port, () => {
-  console.log(`server running at port number ${port}`);
+app.listen(port, async () => {
+  try {
+    await mongodbConnection();
+    console.log(`server running at port number ${port}`);
+  } catch (error) {
+    console.error(error);
+  }
 });
